@@ -11,13 +11,4 @@ public class ItemResources {
         this.mapper = jsonObjectMapper;
         this.itemService = itemService;
     }
-
-    public Object postFlea(Request request, Response response) throws Exception {
-        Flea listing = mapper.readValue(request.body(), Flea.class);
-        //itemService.addListing(listing);
-        //response.header("Location", "listingService/:" + listing.getId());
-        //response.status(201);
-        return mapper.writeValueAsString(listing);
-    }
-
 }
