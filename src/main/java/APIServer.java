@@ -1,8 +1,16 @@
 import static spark.Spark.*;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javaslang.control.Try;
 
-public class Main {
+public class APIServer {
+    private static ObjectMapper jsonObjectMapper = new ObjectMapper();
+    private static ItemService itemService = new ItemService();
+    private static ItemResources itemResources = new ItemResources(jsonObjectMapper, itemService);
+
+    public APIServer() {
+    }
+
     public static void main(String[] args) {
         Integer portNumber = Try.of(() -> Integer.valueOf(System.getenv("PORT"))).orElseGet((t) -> {
             System.out.println("WARNING: The server port could not be found with 'PORT' env var. Using the " +
@@ -12,9 +20,14 @@ public class Main {
 
         port(portNumber);
 
-        get("/", (req, res) -> "Hello World!");
+        get("/", (request, response) -> "Hello World!");
 
-        get("/ping", (req, res) -> "pong");
+        get("/ping", (request, response) -> "pong");
+
+        get("/felix", ((request, response) -> "Bienvenue sur Félix Boutin.com"));
+
+        post("/flea/:id", (request, response) -> itemResources.postFlea(request, response));
+
 
         enableCORS("*", "*", "*");
     }
