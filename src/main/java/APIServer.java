@@ -26,7 +26,7 @@ public class APIServer {
 
         get("/felix", ((request, response) -> "Bienvenue sur Félix Boutin.com"));
 
-        post("/flea/:id", (request, response) -> itemResources.postFlea(request, response));
+        post("/flea/:id", (request, response) -> "itemResources.postFlea(request, response)");
 
 
         enableCORS("*", "*", "*");
