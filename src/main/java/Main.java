@@ -4,7 +4,6 @@ import javaslang.control.Try;
 
 public class Main {
     public static void main(String[] args) {
-
         Integer portNumber = Try.of(() -> Integer.valueOf(System.getenv("PORT"))).orElseGet((t) -> {
             System.out.println("WARNING: The server port could not be found with 'PORT' env var. Using the " +
                     "default one (9090)");
@@ -13,7 +12,9 @@ public class Main {
 
         port(portNumber);
 
-        get("/", (req,res) -> "Hello World!");
+        get("/", (req, res) -> "Hello World!");
+
+        get("/ping", (req, res) -> "pong");
 
         enableCORS("*", "*", "*");
     }
