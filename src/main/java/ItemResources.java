@@ -14,9 +14,9 @@ public class ItemResources {
 
     public Object postFlea(Request request, Response response) throws Exception {
         Flea listing = mapper.readValue(request.body(), Flea.class);
-        itemService.addListing(listing);
-        response.header("Location", "listingService/:" + listing.getId());
-        response.status(201);
+        //itemService.addListing(listing);
+        //response.header("Location", "listingService/:" + listing.getId());
+        //response.status(201);
         return mapper.writeValueAsString(listing);
     }
 
