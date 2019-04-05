@@ -1,7 +1,5 @@
 import static spark.Spark.*;
 
-import java.io.
-
 import javaslang.control.Try;
 
 public class Main {
@@ -13,7 +11,7 @@ public class Main {
             return 9090;
         });
 
-        port(Integer.parseInt(System.getenv("PORT")));
+        port(portNumber);
 
         get("/", (req,res) -> "Hello World!");
 
